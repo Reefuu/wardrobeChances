@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('subcategories', function (Blueprint $table) {
             $table->id();
+            $table->string('subcat_name', 50);
+            $table->unsignedBigInteger('category_id'); //initialization foreign key
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories'); //setting the foreign key
         });
     }
 
