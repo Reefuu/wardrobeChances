@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -18,10 +19,33 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        "username",
+        "email",
+        "password",
+        "name",
+        "status"
     ];
+
+    public function comment(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+    public function testimonial(): HasMany
+    {
+        return $this->hasMany(Testimonial::class);
+    }
+    public function transaction(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
+    }
+    public function wishlist(): HasMany
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+    public function cart(): HasMany
+    {
+        return $this->hasMany(Cart::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -29,7 +53,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        // 'password',
         'remember_token',
     ];
 
