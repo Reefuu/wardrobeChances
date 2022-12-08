@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             User::create([
                 'name' => $faker->name($gender),
                 'email' => $faker->email(),
-                'password' => bcrypt($faker->password()),
+                'password' => bcrypt("password"),
                 'username' => $faker->userName(),
                 'status' => $status,
             ]);

@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('testimonials', function (Blueprint $table) {
-            $table->id();
-            $table->text('testimonial_desc');
-            $table->unsignedBigInteger('user_id');
-            $table->timestamps();
-
-            // $table->foreign('user_id')->references('id')->on('users');
+        Schema::table('testimonials', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -30,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('testimonials');
+        // Schema::table('testimonials', function (Blueprint $table) {
+        //     //
+        // });
     }
 };

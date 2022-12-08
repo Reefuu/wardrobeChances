@@ -23,8 +23,7 @@ class Product extends Model
         "image",
         "status",
         "subcat_id",
-        "testimonial_id",
-        "comments_id"
+        "testimonial_id"
     ];
 
     public function subcategory(): BelongsTo
@@ -43,9 +42,9 @@ class Product extends Model
     {
         return $this->hasMany(Comment::class);
     }
-    public function transactionproduct(): BelongsTo
+    public function transactionproduct(): HasOne
     {
-        return $this->belongsTo(TransactionProduct::class);
+        return $this->hasOne(TransactionProduct::class);
     }
     public function testimonial(): HasOne
     {

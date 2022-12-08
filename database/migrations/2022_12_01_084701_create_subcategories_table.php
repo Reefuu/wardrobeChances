@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id'); //initialization foreign key
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('categories'); //setting the foreign key
+            // $table->foreign('category_id')->references('id')->on('categories'); //setting the foreign key
         });
     }
 
