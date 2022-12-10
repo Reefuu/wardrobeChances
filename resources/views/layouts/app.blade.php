@@ -23,10 +23,13 @@
 <body>
 
     @include('components.navbar')
+    
 
-    <div class="container">
+    <div class="">
         @yield('container')
     </div>
+
+   <script src="{{ asset('javascript/filter.js') }}"></script>
 </body>
 
 </html>

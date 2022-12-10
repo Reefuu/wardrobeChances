@@ -19,6 +19,12 @@ Route::get('/', [WDController::class, 'index']);
 
 Route::get('/index', [WDController::class, 'index']);
 
+Route::get('/product', [WDController::class, 'product']);
+
+Route::get('/wishlist', [WDController::class, 'wishlist']);
+
+Route::get('/cart', [WDController::class, 'cart']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
