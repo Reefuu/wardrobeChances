@@ -17,24 +17,40 @@ class UserSeeder extends Seeder
     public function run()
     {
 
-        $faker = Factory::create();
+        // $faker = Factory::create();
 
-        $count = 1;
-        while ($count <= 10) {
-            $gender = $faker->randomElement(['male', 'female']);
-            if ($count == 1) {
-                $status = 'admin';
-            } else {
-                $status = 'member';
-            }
-            User::create([
-                'name' => $faker->name($gender),
-                'email' => $faker->email(),
-                'password' => bcrypt("password"),
-                'username' => $faker->userName(),
-                'status' => $status,
-            ]);
-            $count++;
-        }
+        // $count = 1;
+        // while ($count <= 10) {
+        //     $gender = $faker->randomElement(['male', 'female']);
+        //     if ($count == 1) {
+        //         $status = 'admin';
+        //     } else {
+        //         $status = 'member';
+        //     }
+        //     User::create([
+        //         'name' => $faker->name($gender),
+        //         'email' => $faker->email(),
+        //         'password' => bcrypt("password"),
+        //         'username' => $faker->userName(),
+        //         'status' => $status,
+        //     ]);
+        //     $count++;
+        // }
+
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@wdchances',
+            'password' => bcrypt('wdchances'),
+            'username' => 'adminwdchances',
+            'status' => 'admin'
+        ]);
+
+        User::create([
+            'name' => 'Member',
+            'email' => 'member@wdchances',
+            'password' => bcrypt('wdchances'),
+            'username' => 'memberwdchances',
+            'status' => 'member'
+        ]);
     }
 }

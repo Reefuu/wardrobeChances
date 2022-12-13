@@ -88,5 +88,10 @@
             background-color: #666;
             color: white;
         }
+
+        .btn.btn-search{
+            border: none;
+            outline: none;
+        }
     </style>
 @endsection

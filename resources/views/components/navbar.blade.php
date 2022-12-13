@@ -16,15 +16,30 @@
                 <li class="nav-item">
                     <a class="nav-link {{ $pagetitle == 'Products' ? 'active' : '' }}" href="/product">Products</a>
                 </li>
-                {{-- <li class="nav-item">
+                <li class="nav-item">
                     @auth
                         @if (auth()->user()->status == 'admin')
-                            <a href="/admin" class="nav-link">Transaction</a>
+                            <a class="nav-link" href="/admin">Admin</a>
                         @endif
                     @endauth
-                </li> --}}
+                </li>
                 <li class="nav-item">
-                    <a class="nav-link">Logout</a>
+                    @auth
+                        <form action="/logout" method="POST">
+                            @csrf
+                            {{-- <input type="hidden" name="_method" value="POST"> --}}
+                            {{-- <a class="nav-link btn" type="submit">Logout</a> --}}
+                            <button type="submit" class="nav-link btn">Logout</button>
+                        </form>
+                    @endauth
+                    @guest
+                        <a class="nav-link" href="/login">Login</a>
+                    @endguest
+                </li>
+                <li class="nav-item">
+                    @if (!Auth::check())
+                        <a class="nav-link" href="/register">Register</a>
+                    @endif
                 </li>
             </ul>
 
@@ -35,7 +50,7 @@
                         name="search">
 
 
-                    <button class="btn btn-outline-warning me-1 p-0" type="submit" style="width: 50px; height:45px ">
+                    <button class="btn btn-outline-warning btn-search me-1 p-0" type="submit" style="width: 50px; height:45px ">
                         <a href="">
                             <div class="d-flex">
                                 <img src="{{ asset('pictures/search.png') }}" width="40px" height="40px"
