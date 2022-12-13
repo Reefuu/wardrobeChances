@@ -29,20 +29,22 @@
             </ul>
 
             <div class="d-flex me-1 ">
-                <form action="/" method="GET" class="d-flex" role="search" style="height: 45px; width:200px">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                
+                <form action="/product" method="GET" class="d-flex" role="search" style="height: 45px; width:200px">
 
-                <button class="btn btn-outline-warning me-1 p-0" type="submit" style="width: 50px; height:45px ">
-                    <a href="">
-                        <div class="d-flex">
-                            <img src="{{ asset('pictures/search.png') }}" width="40px" height="40px" alt="logo"
-                                class="mx-auto">
-                        </div>
-                    </a>
-                    </a>
-                </button>
-            </form>
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                        name="search">
+
+
+                    <button class="btn btn-outline-warning me-1 p-0" type="submit" style="width: 50px; height:45px ">
+                        <a href="">
+                            <div class="d-flex">
+                                <img src="{{ asset('pictures/search.png') }}" width="40px" height="40px"
+                                    alt="logo" class="mx-auto">
+                            </div>
+                        </a>
+                        </a>
+                    </button>
+                </form>
             </div>
 
             @if (Request::url() === 'http://127.0.0.1:8000/wishlist' ||

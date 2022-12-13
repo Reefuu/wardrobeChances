@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Subcategory;
 use App\Models\User;
@@ -11,54 +12,63 @@ use Illuminate\Http\Request;
 
 class WDController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
 
-        if($request->has('search')){
+        if ($request->has('search')) {
             return view('index', [
                 "pagetitle" => "Wardrobe Chance",
                 "maintitle" => "Wardrobe Chance",
-                "products" => Product::where('name', 'like', '%'.$request->search.'%')->get,
-                "subcategory" => Subcategory::all(),
+                "products" => Product::where('name', 'like', '%' . $request->search . '%')->get(),
                 "searches" => $request->search,
+                "categories" => Category::all(),
+                "subcat" => Subcategory::all()
+
             ]);
-        }
-        else{
+        } else {
             return view('index', [
                 "pagetitle" => "Wardrobe Chance",
                 "maintitle" => "Wardrobe Chance",
-                "subcategory" => Subcategory::all(),
                 "products" => Product::all(),
+                "categories" => Category::all(),
+                "subcat" => Subcategory::all()
+
             ]);
         }
     }
 
-    public function product(Request $request){
-        if($request->has('search')){
+    public function product(Request $request)
+    {
+        if ($request->has('search')) {
             return view('product', [
                 "pagetitle" => "Products",
                 "maintitle" => "Our Products",
-                "products" => Product::where('name', 'like', '%'.$request->search.'%')->get,
+                "products" => Product::where('name', 'like', '%' . $request->search . '%')->get(),
+                "categories" => Category::all(),
+                "subcat" => Subcategory::all()
             ]);
-        }
-        else{
+        } else {
             return view('product', [
                 "pagetitle" => "Products",
                 "maintitle" => "Our Products",
-                "products" => Product::all()
-            ]);
-        }
+                "products" => Product::all(),
+                "categories" => Category::all(),
+                "subcat" => Subcategory::all()
 
-        
+            ]);
+        }
     }
 
-    public function wishlist(){
+    public function wishlist()
+    {
         return view('wishlist', [
             "pagetitle" => "Whistlist",
             "wishlist" => Wishlist::all()
         ]);
     }
 
-    public function cart(){
+    public function cart()
+    {
         return view('cart', [
             "pagetitle" => "Cart",
             "cart" => Cart::all()
