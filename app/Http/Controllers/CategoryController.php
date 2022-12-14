@@ -38,6 +38,10 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
+        $this->validate($request, [
+            'category_name' => 'required|string|max:50',
+        ]);
+
         Category::create([
             'category_name' => $request->category_name,
         ]);
@@ -62,9 +66,12 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        return view("updatecatform", [
+            'category' => Category::findOrFail($id),
+            'pagetitle' => "Update Category",
+        ]);
     }
 
     /**
@@ -74,9 +81,15 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        $category->update([
+            "category_name" => $request->category_name,
+        ]);
+
+        return redirect("/admin");
     }
 
     /**
@@ -85,8 +98,12 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        // $category->delete();
+
+        return redirect("/admin");
     }
 }

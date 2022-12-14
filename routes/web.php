@@ -4,6 +4,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\WDController;
+use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +35,9 @@ Route::resource('subcategories', SubcategoryController::class)->middleware('admi
 
 Route::get('/admin', function(){
     return view('admin/index', [
-        'pagetitle' => 'Admin'
+        'pagetitle' => 'Admin',
+        'categories' => Category::all(),
+        'subcategories' => Subcategory::all(),
     ]);
 })->middleware(['admin']);
 

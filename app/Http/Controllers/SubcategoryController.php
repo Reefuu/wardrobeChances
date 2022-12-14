@@ -40,6 +40,10 @@ class SubcategoryController extends Controller
      */
     public function store(StoreSubcategoryRequest $request)
     {
+        $this->validate($request, [
+            'subcat_name' => 'required|string|max:50',
+        ]);
+
         Subcategory::create([
             'subcat_name' => $request->subcat_name,
             'category_id' => $request->category_id,
@@ -65,9 +69,12 @@ class SubcategoryController extends Controller
      * @param  \App\Models\Subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subcategory $subcategory)
+    public function edit($id)
     {
-        //
+        return view("updatesubcatform", [
+            'subcategory' => Subcategory::findOrFail($id),
+            'pagetitle' => "Update Subcategory",
+        ]);
     }
 
     /**
@@ -77,9 +84,15 @@ class SubcategoryController extends Controller
      * @param  \App\Models\Subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSubcategoryRequest $request, Subcategory $subcategory)
+    public function update(UpdateSubcategoryRequest $request, $id)
     {
-        //
+        $subcategory = Subcategory::findOrFail($id);
+
+        $subcategory->update([
+            "subcat_name" => $request->subcat_name,
+        ]);
+
+        return redirect("/admin");
     }
 
     /**
@@ -88,8 +101,12 @@ class SubcategoryController extends Controller
      * @param  \App\Models\Subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subcategory $subcategory)
+    public function destroy($id)
     {
-        //
+        $subcategory = Subcategory::findOrFail($id);
+
+        // $subcategory->delete();
+
+        return redirect("/admin");
     }
 }
