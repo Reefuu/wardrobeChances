@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSubcategoryRequest;
 use App\Http\Requests\UpdateSubcategoryRequest;
+use App\Models\Category;
 use App\Models\Subcategory;
 
 class SubcategoryController extends Controller
@@ -25,7 +26,10 @@ class SubcategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('addsubcatform', [
+            'pagetitle' => "Create Subcategory",
+            'categories' => Category::all(),
+        ]);
     }
 
     /**
@@ -36,7 +40,12 @@ class SubcategoryController extends Controller
      */
     public function store(StoreSubcategoryRequest $request)
     {
-        //
+        Subcategory::create([
+            'subcat_name' => $request->subcat_name,
+            'category_id' => $request->category_id,
+        ]);
+
+        return redirect('/admin');
     }
 
     /**

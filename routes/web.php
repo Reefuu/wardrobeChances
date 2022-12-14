@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\WDController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +26,10 @@ Route::get('/product', [WDController::class, 'product']);
 Route::get('/wishlist', [WDController::class, 'wishlist']);
 
 Route::get('/cart', [WDController::class, 'cart']);
+
+Route::resource('categories', CategoryController::class)->middleware('admin');
+
+Route::resource('subcategories', SubcategoryController::class)->middleware('admin');
 
 Route::get('/admin', function(){
     return view('admin/index', [

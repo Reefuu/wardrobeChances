@@ -25,7 +25,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('addcatform', [
+            'pagetitle' => "Create Category",
+        ]);
     }
 
     /**
@@ -36,7 +38,11 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        Category::create([
+            'category_name' => $request->category_name,
+        ]);
+
+        return redirect('/admin');
     }
 
     /**
