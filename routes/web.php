@@ -25,6 +25,8 @@ Route::get('/index', [WDController::class, 'index']);
 
 Route::get('/product', [WDController::class, 'product']);
 
+Route::get('/{product}', [WDController::class, 'detailproduct'])->name('products.detail');
+
 Route::get('/wishlist', [WDController::class, 'wishlist']);
 
 Route::get('/cart', [WDController::class, 'cart']);
@@ -33,7 +35,7 @@ Route::resource('categories', CategoryController::class)->middleware('admin');
 
 Route::resource('subcategories', SubcategoryController::class)->middleware('admin');
 
-Route::get('/admin', function(){
+Route::get('/admin', function () {
     return view('admin/index', [
         'pagetitle' => 'Admin',
         'categories' => Category::all(),
