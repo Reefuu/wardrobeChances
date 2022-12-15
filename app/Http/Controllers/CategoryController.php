@@ -87,6 +87,7 @@ class CategoryController extends Controller
 
         $category->update([
             "category_name" => $request->category_name,
+            "deleted" => $category->deleted,
         ]);
 
         return redirect("/admin");
@@ -100,9 +101,15 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
 
-        // $category->delete();
+        $category = Category::withTrashed()->findOrFail($id);
+
+        if ($category->trashed()) {
+            $category->restore();
+        } else {
+            $category->delete();
+        }
+
 
         return redirect("/admin");
     }

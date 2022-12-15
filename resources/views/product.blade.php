@@ -16,9 +16,14 @@
     <!-- Control buttons -->
     <div id="myBtnContainer" class="text-center  mt-3">
         <button class="btn btnk active" onclick="filterSelection('all')"> Show all</button>
-        <button class="btn btnk" onclick="filterSelection('tops')"> Cars</button>
-        <button class="btn btnk" onclick="filterSelection('pants')"> Animals</button>
-        <button class="btn btnk" onclick="filterSelection('accessories')"> Fruits</button>
+
+        @foreach ($categories as $category)
+            @if (!$category->trashed())
+                <button class="btn btnk" onclick="filterSelection('{{ $category->category_name }}')">
+                    {{ ucfirst($category->category_name) }}
+                </button>
+            @endif
+        @endforeach
     </div>
 
     @if ($products->count() == 0)
@@ -44,8 +49,9 @@
                                         <div class="ps-3">
                                             <div class="card mb-3 shadow me-5 mb-5 rounded"
                                                 style="width: 17.5rem; height:25rem; background-color:#ffebdc ;">
-                                                <img src="{{ asset("pictures/{$product['image']}") }}" class="card-img-top"
-                                                    style="width: 238.5px; height: 230px" alt="Product picture">
+                                                <img src="{{ asset("pictures/{$product['image']}") }}"
+                                                    class="card-img-top mx-auto" style="width: 275px; height: 250px"
+                                                    alt="Product picture">
                                                 <div class="card-body">
                                                     <p class="card-title"
                                                         style="font-size: 19PX; text-overflow: ellipsis; overflow: hidden; white-space: nowrap ">
@@ -53,7 +59,7 @@
                                                     </p>
                                                     <p class="card-text">Price : {{ $product['price'] }}</p>
                                                     <div class="d-flex">
-                                                        <a href="{{ route('products.detail'), $product['id'] }}"
+                                                        <a href="/product/{{ $product->id }}"
                                                             style="background-color:#ffddc3; "
                                                             class="btn align-items-center justify-content-center mx-auto"><b>Shop</b></a>
                                                     </div>
@@ -70,32 +76,4 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-    <style>
-        .filterDiv {
-            display: none;
-        }
-
-        .btn.btnk {
-            border: none;
-            outline: none;
-            background-color: #f1f1f1;
-            cursor: pointer;
-        }
-
-        .btn.active {
-            background-color: rgb(255, 200, 142);
-            font-weight: 620;
-            color: white;
-        }
-
-        .btn.btn-search {
-            border: none;
-            outline: none;
-        }
-    </style>
 @endsection

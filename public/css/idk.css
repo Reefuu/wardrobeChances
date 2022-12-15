@@ -1,0 +1,58 @@
+.filterDiv {
+    display: none;
+}
+
+.btn.filterDiv {
+    display: none;
+}
+
+.btn.btnk {
+    border: none;
+    outline: none;
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.btn.btnk.admin {
+    border: none;
+    outline: none;
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.btn.active {
+    background-color: rgb(255, 200, 142);
+    font-weight: 620;
+    color: white;
+}
+
+.btn.btnk.active {
+    background-color: rgb(255, 200, 142);
+    font-weight: 620;
+    color: white;
+}
+
+.btn.btn-search {
+    border: none;
+    outline: none;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    color: #fccdac;
+}
+
+.navbar .navbar-nav .active {
+    color: #efa26b;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}

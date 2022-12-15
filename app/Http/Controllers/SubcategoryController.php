@@ -103,9 +103,13 @@ class SubcategoryController extends Controller
      */
     public function destroy($id)
     {
-        $subcategory = Subcategory::findOrFail($id);
+        $subcategory = Subcategory::withTrashed()->findOrFail($id);
 
-        // $subcategory->delete();
+        if ($subcategory->trashed()) {
+            $subcategory->restore();
+        } else {
+            $subcategory->delete();
+        }
 
         return redirect("/admin");
     }

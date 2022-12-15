@@ -45,3 +45,11 @@ for (var i = 0; i < btns.length; i++) {
     this.className += " active";
   });
 }
+
+function alertWishlist() {
+  alert("Please Log In To View Wishlist!");
+}
+
+function alertCart() {
+  alert("Please Log In To View Cart!");
+}
