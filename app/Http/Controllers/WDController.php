@@ -37,6 +37,14 @@ class WDController extends Controller
         }
     }
 
+    public function detailproduct(Product $product){
+        return view('detailproduct', [
+            "pagetitle" => "Product Details",
+            "maintitle" => "Product Details",
+            "product" => $product,
+        ]);
+    }
+
     public function product(Request $request)
     {
         if ($request->has('search')) {

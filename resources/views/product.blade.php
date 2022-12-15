@@ -13,14 +13,6 @@
         </h4>
     </div>
 
-
-
-    @if ($products->count() == 0)
-        <div class="d-flex mx-auto text-center">
-            <h3>ANJROTTTT WOIII GADA PRODUKK GIMANA NI GESSSS ANJROTTTT</h3>
-        </div>
-    @endif
-
     <!-- Control buttons -->
     <div id="myBtnContainer" class="text-center  mt-3">
         <button class="btn btnk active" onclick="filterSelection('all')"> Show all</button>
@@ -28,6 +20,17 @@
         <button class="btn btnk" onclick="filterSelection('pants')"> Animals</button>
         <button class="btn btnk" onclick="filterSelection('accessories')"> Fruits</button>
     </div>
+
+    @if ($products->count() == 0)
+        <div class=" mx-auto text-center align-items-center">
+            <img src="{{ asset('pictures/notfound.svg') }}" class="card-img-top mx-auto" style="width: 275px; height: 250px"
+                alt="Not Found ">
+            <br>
+            <h3 class="text-center">Oops!</h3>
+            <h5>No Result For "{{ Request::get('search') }}"</h5>
+            <p> Please make sure you have entered the correct search term and try again.</p>
+        </div>
+    @endif
 
     <div class="mt-3">
         <div class=" text-center w-100" style="background-color: #ffffff">
@@ -50,7 +53,7 @@
                                                     </p>
                                                     <p class="card-text">Price : {{ $product['price'] }}</p>
                                                     <div class="d-flex">
-                                                        <a href="/detailproduct/{{ $product['code'] }}"
+                                                        <a href="{{ route('products.detail'), $product['id'] }}"
                                                             style="background-color:#ffddc3; "
                                                             class="btn align-items-center justify-content-center mx-auto"><b>Shop</b></a>
                                                     </div>
@@ -85,11 +88,12 @@
         }
 
         .btn.active {
-            background-color: #666;
+            background-color: rgb(255, 200, 142);
+            font-weight: 620;
             color: white;
         }
 
-        .btn.btn-search{
+        .btn.btn-search {
             border: none;
             outline: none;
         }
