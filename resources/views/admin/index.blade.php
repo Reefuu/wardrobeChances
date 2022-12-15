@@ -8,15 +8,11 @@
         <button class="btn btnk" onclick="filterSelection('subcat')">Subcategories</button>
         <button class="btn btnk" onclick="filterSelection('products')">Products</button>
     </div>
-
     <div class="container d-flex mx-auto align-items-center justify-content-center mt-4">
         <a href="{{ route('categories.create') }}" class="btn btn-outline-primary categories filterDiv">Create Category</a>
         <a href="{{ route('subcategories.create') }}" class="btn btn-outline-primary ms-4 subcat filterDiv">Create
             Subcategory</a>
-            <a href="{{ route('subcategories.create') }}" class="btn btn-outline-primary ms-4 subcat filterDiv">Create
-                Subcategory</a>
     </div>
-
     <div class="container mt-4">
         <div class="categories filterDiv">
             <table class="table table-striped ">

@@ -25,11 +25,7 @@ Route::get('/index', [WDController::class, 'index']);
 
 Route::get('/product', [WDController::class, 'product']);
 
-<<<<<<< HEAD
 // Route::get('/{product}', [WDController::class, 'detailproduct'])->name('products.detail');
-=======
-Route::get('/{product}', [WDController::class, 'detailproduct'])->name('products.detail');
->>>>>>> 269edc8da16ac770e729310650774bb534d67309
 
 Route::get('/wishlist', [WDController::class, 'wishlist']);
 

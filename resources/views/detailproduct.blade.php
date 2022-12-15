@@ -44,19 +44,11 @@
                         <a href="https://wa.me/6285173380018"
                             class="btn me-3  align-items-center justify-content-center mx-auto"
                             style="background-color:#efc195; color: white " target="_blank"><b>Buy</b></a>
-<<<<<<< HEAD
-=======
-
->>>>>>> 269edc8da16ac770e729310650774bb534d67309
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 269edc8da16ac770e729310650774bb534d67309
     <div class="card mb-5 d-block d-md-none mx-auto shadow p-3 mb-4  rounded">
         <img src={{ asset("pictures/{$product['photo']}") }} class="card-img-top" style="width: 300px; height: 300px"
             alt="Product Picture">
@@ -76,8 +68,4 @@
         </div>
     </div>
     </div>
-<<<<<<< HEAD
 @endsection
-=======
-@endsection
->>>>>>> 269edc8da16ac770e729310650774bb534d67309
