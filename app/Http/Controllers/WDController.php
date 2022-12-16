@@ -45,27 +45,7 @@ class WDController extends Controller
         ]);
     }
 
-    public function product(Request $request)
-    {
-        if ($request->has('search')) {
-            return view('product', [
-                "pagetitle" => "Products",
-                "maintitle" => "Our Products",
-                "products" => Product::where('name', 'like', '%' . $request->search . '%')->get(),
-                "categories" => Category::all(),
-                "subcat" => Subcategory::all()
-            ]);
-        } else {
-            return view('product', [
-                "pagetitle" => "Products",
-                "maintitle" => "Our Products",
-                "products" => Product::all(),
-                "categories" => Category::all(),
-                "subcat" => Subcategory::all()
-
-            ]);
-        }
-    }
+   
 
     public function wishlist()
     {
