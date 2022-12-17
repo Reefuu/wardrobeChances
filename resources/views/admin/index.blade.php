@@ -24,7 +24,7 @@
 
     <div class="categories filterDiv">
         <h3 class="mx-5 mt-5">All Categories</h3>
-        <div class="mx-5 mt-4">
+        <div class="mx-5 mt-4 table-responsive">
             <table class="table table-striped ">
                 <thead>
                     <tr>
@@ -80,7 +80,7 @@
     {{-- subcat --}}
     <div class="subcat filterDiv">
         <h3 class="mx-5 mt-5">All Subcategories</h3>
-        <div class="mx-5 mt-4">
+        <div class="mx-5 mt-4 table-responsive">
             <table class="table table-striped ">
                 <thead>
                     <tr>
@@ -148,11 +148,12 @@
 
     <div class="product filterDiv">
         <h3 class="mx-5 mt-5 ">All Products</h3>
-        <div class="mx-5 ">
+        <div class="mx-5 table-responsive ">
             <table class="table table-striped ">
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Product Image</th>
                         <th>Product Name</th>
                         <th>Product Size</th>
                         <th>Product Color</th>
@@ -170,13 +171,19 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                    $index = 1;
+                    ?>
                     @foreach ($categories as $category)
                         @foreach ($subcategories as $subcat)
                             @if ($category['id'] == $subcat['category_id'])
                                 @foreach ($products as $product)
-                                    @if ($product->id == $subcat->id)
+                                    @if ($product->subcat_id == $subcat->id)
                                         <tr>
-                                            <th>{{ $loop->iteration }}</th>
+                                            <th>{{ $index }}</th>
+                                            <?php $index++; ?>
+                                            <td><img src="{{ asset('storage/' . $product->image) }}" style="width: 100px"
+                                                    alt=""></td>
                                             <td>{{ $product['name'] }}</td>
                                             <td>{{ $product['size'] }}</td>
                                             <td>{{ $product['color'] }}</td>
@@ -185,8 +192,8 @@
                                             <td>{{ $product['waist'] }}</td>
                                             <td>{{ $product['price'] }}</td>
                                             <td>{{ $product['status'] }}</td>
-                                            <td>{{ $subcat['subcat_name'] }}</td>
                                             <td>{{ $category['category_name'] }}</td>
+                                            <td>{{ $subcat['subcat_name'] }}</td>
                                             <td>
                                                 @if ($category->trashed())
                                                     Deleted

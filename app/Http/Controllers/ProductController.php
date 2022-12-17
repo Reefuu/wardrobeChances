@@ -34,7 +34,8 @@ class ProductController extends Controller
                 "categories" => Category::all(),
                 "subcat" => Subcategory::all()
 
-            ]);}
+            ]);
+        }
     }
 
     /**
@@ -63,7 +64,8 @@ class ProductController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string|max:50',
-            'price' => 'required|number',
+            'price' => 'required|int',
+            'color' => 'required|string',
         ]);
 
         Product::create([
@@ -77,7 +79,7 @@ class ProductController extends Controller
             'status' => $request->status,
             'subcat_id' => $request->subcat_id,
             'category_id' => $request->category_id,
-            'image' => $request->image,
+            'image' => $request->file('image')->store('image', 'public'),
         ]);
 
         return redirect('/admin');
@@ -89,9 +91,13 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        return view("detailproduct", [
+            'product' => Product::findOrFail($id),
+            'maintitle' => "Product Detail",
+            'pagetitle' => "Product Detail",
+        ]);
     }
 
     /**
@@ -105,6 +111,8 @@ class ProductController extends Controller
         return view("updateproductform", [
             'product' => Product::findOrFail($id),
             'pagetitle' => "Update Product",
+            'categories' => Category::withTrashed()->get(),
+            'subcategories' => Subcategory::withTrashed()->get(),
         ]);
     }
 
@@ -119,9 +127,38 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        $product->update([
-            "name" => $request->name,
-        ]);
+        if ($request->file('image')) {
+            if (file_exists('storage/' . $product->image)) {
+                unlink('storage/' . $product->image);
+            }
+            $product->update([
+                'name' => $request->name,
+                'size' => $request->size,
+                'color' => $request->color,
+                'bust' => $request->bust,
+                'length' => $request->length,
+                'waist' => $request->waist,
+                'price' => $request->price,
+                'status' => $request->status,
+                'subcat_id' => $request->subcat_id,
+                'category_id' => $request->category_id,
+                'image' => $request->file('image')->store('image', 'public')
+            ]);
+        } else {
+            $product->update([
+                'name' => $request->name,
+                'size' => $request->size,
+                'color' => $request->color,
+                'bust' => $request->bust,
+                'length' => $request->length,
+                'waist' => $request->waist,
+                'price' => $request->price,
+                'status' => $request->status,
+                'subcat_id' => $request->subcat_id,
+                'category_id' => $request->category_id,
+            ]);
+        }
+
 
         return redirect("/admin");
     }
@@ -132,7 +169,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
         $product = Product::withTrashed()->findOrFail($id);
 

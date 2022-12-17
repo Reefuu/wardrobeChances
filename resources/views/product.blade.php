@@ -49,7 +49,7 @@
                                         <div class="ps-3">
                                             <div class="card mb-3 shadow me-5 mb-5 rounded"
                                                 style="width: 17.5rem; height:25rem; background-color:#ffebdc ;">
-                                                <img src="{{ asset("pictures/{$product['image']}") }}"
+                                                <img src="{{ asset('storage/'.$product->image) }}"
                                                     class="card-img-top mx-auto" style="width: 275px; height: 250px"
                                                     alt="Product picture">
                                                 <div class="card-body">
@@ -57,7 +57,9 @@
                                                         style="font-size: 19PX; text-overflow: ellipsis; overflow: hidden; white-space: nowrap ">
                                                         <b>{{ $product['name'] }}</b>
                                                     </p>
-                                                    <p class="card-text">Price : {{ $product['price'] }}</p>
+                                                    <p class="card-text">Price : IDR {{ $product['price'] }}</p>
+
+                                                    
                                                     <div class="d-flex">
                                                         <a href="/product/{{ $product->id }}"
                                                             style="background-color:#ffddc3; "

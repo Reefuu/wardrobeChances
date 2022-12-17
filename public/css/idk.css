@@ -41,9 +41,15 @@
     color: #fccdac;
 }
 
-.navbar .navbar-nav .active {
+.navbar .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link.active {
     color: #efa26b;
 }
+
+.disabled{
+    pointer-events: none;
+    cursor: default;
+}
+        
 
 body::-webkit-scrollbar {
     display: none;
