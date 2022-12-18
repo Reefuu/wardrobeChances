@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTestimonialRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Http\Requests\UpdateTestimonialRequest;
+use App\Models\Product;
 use App\Models\Testimonial;
+use App\Models\User;
 
 class TestimonialController extends Controller
 {
@@ -25,7 +28,13 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-        //
+        return dd();
+
+        return view('addtestiform', [
+            'pagetitle' => "Create Testimonial",
+            'products' => Product::all()->where('status', "sold"),
+            'users' => User::all(),
+        ]);
     }
 
     /**
@@ -34,7 +43,7 @@ class TestimonialController extends Controller
      * @param  \App\Http\Requests\StoreTestimonialRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTestimonialRequest $request)
+    public function store(StoreTestimonialRequest $request, UpdateProductRequest $reqProd)
     {
         //
     }

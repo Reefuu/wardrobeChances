@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreWishlistRequest;
 use App\Http\Requests\UpdateWishlistRequest;
+use App\Models\Cart;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Subcategory;
 use App\Models\Wishlist;
+use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
@@ -15,7 +20,15 @@ class WishlistController extends Controller
      */
     public function index()
     {
-        //
+        return view('wishlist', [
+            "pagetitle" => "Whistlist",
+            "wishlists" => Wishlist::all()->where('user_id', Auth::id()),
+            "products" => Product::all(),
+            "carts" => Cart::withTrashed()->where('user_id', Auth::id())->get,
+            "categories" => Category::all(),
+            "subcat" => Subcategory::all(),
+
+        ]);
     }
 
     /**
@@ -36,7 +49,18 @@ class WishlistController extends Controller
      */
     public function store(StoreWishlistRequest $request)
     {
-        //
+        Wishlist::create([
+            'user_id' => $request->user_id,
+            'product_id' => $request->product_id,
+        ]);
+
+        if (str_contains(url()->previous(), 'product')) {
+            return redirect("/product/" . $request->product_id);
+        } else if (str_contains(url()->previous(), 'wishlist')) {
+            return redirect("/wishlist");
+        } else if (str_contains(url()->previous(), 'cart')) {
+            return redirect("/cart");
+        }
     }
 
     /**
@@ -79,8 +103,22 @@ class WishlistController extends Controller
      * @param  \App\Models\Wishlist  $wishlist
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Wishlist $wishlist)
+    public function destroy($id)
     {
-        //
+        $wishlist = Wishlist::withTrashed()->findOrFail($id);
+
+        if ($wishlist->trashed()) {
+            $wishlist->restore();
+        } else {
+            $wishlist->delete();
+        }
+
+        if (str_contains(url()->previous(), 'product')) {
+            return redirect("/product/" . $wishlist->product_id);
+        } else if (str_contains(url()->previous(), 'wishlist')) {
+            return redirect("/wishlist");
+        } else if (str_contains(url()->previous(), 'cart')) {
+            return redirect("/cart");
+        }
     }
 }

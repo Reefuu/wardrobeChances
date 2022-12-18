@@ -49,7 +49,7 @@
                     </a>
                 @endif --}}
 
-            <div class="mt-5 mb-4 flex items-center justify-center">
+            <div class="mt-6 mb-4 flex items-center justify-center">
                 <x-primary-button>
                     {{ __('Log in') }}
                 </x-primary-button>

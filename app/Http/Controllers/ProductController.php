@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Product;
 use App\Models\Subcategory;
+use App\Models\Testimonial;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -95,6 +100,10 @@ class ProductController extends Controller
     {
         return view("detailproduct", [
             'product' => Product::findOrFail($id),
+            'comments' => Comment::all()->where("product_id", $id),
+            'testimonials' => Testimonial::all()->where("product_id", $id),
+            'wishlists' => Wishlist::withTrashed()->where('user_id', Auth::id())->get(),
+            'carts' => Cart::withTrashed()->where('user_id', Auth::id())->get(),
             'maintitle' => "Product Detail",
             'pagetitle' => "Product Detail",
         ]);

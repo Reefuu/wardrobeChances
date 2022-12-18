@@ -14,52 +14,13 @@ class WDController extends Controller
 {
     public function index(Request $request)
     {
+        return view('index', [
+            "pagetitle" => "Wardrobe Chance",
+            "maintitle" => "Wardrobe Chance",
+            "products" => Product::all()->sortBy('id', SORT_REGULAR, true),
+            "categories" => Category::all(),
+            "subcat" => Subcategory::all()
 
-        if ($request->has('search')) {
-            return view('index', [
-                "pagetitle" => "Wardrobe Chance",
-                "maintitle" => "Wardrobe Chance",
-                "products" => Product::where('name', 'like', '%' . $request->search . '%')->get(),
-                "searches" => $request->search,
-                "categories" => Category::all(),
-                "subcat" => Subcategory::all()
-
-            ]);
-        } else {
-            return view('index', [
-                "pagetitle" => "Wardrobe Chance",
-                "maintitle" => "Wardrobe Chance",
-                "products" => Product::all(),
-                "categories" => Category::all(),
-                "subcat" => Subcategory::all()
-
-            ]);
-        }
-    }
-
-    public function detailproduct(Product $product){
-        return view('detailproduct', [
-            "pagetitle" => "Product Details",
-            "maintitle" => "Product Details",
-            "product" => $product,
-        ]);
-    }
-
-   
-
-    public function wishlist()
-    {
-        return view('wishlist', [
-            "pagetitle" => "Whistlist",
-            "wishlist" => Wishlist::all()
-        ]);
-    }
-
-    public function cart()
-    {
-        return view('cart', [
-            "pagetitle" => "Cart",
-            "cart" => Cart::all()
         ]);
     }
 }

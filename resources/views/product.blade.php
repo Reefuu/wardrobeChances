@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="p-3 rounded-4 mx-3" style="background-color: #FFD7BA">
-        <h4 class="text-center" style="font-family: 'Lexend'; font-weight: 600">
+        <h4 class="text-center my-auto" style="font-family: 'Lexend'; font-weight: 600">
             @if (Request::get('search') && $products->count() != 0)
                 {{ $products->count() }} Product(s) Found
             @elseif($products->count() == 0)
@@ -49,7 +49,7 @@
                                         <div class="ps-3">
                                             <div class="card mb-3 shadow me-5 mb-5 rounded"
                                                 style="width: 17.5rem; height:25rem; background-color:#ffebdc ;">
-                                                <img src="{{ asset('storage/'.$product->image) }}"
+                                                <img src="{{ asset('storage/' . $product->image) }}"
                                                     class="card-img-top mx-auto" style="width: 275px; height: 250px"
                                                     alt="Product picture">
                                                 <div class="card-body">
@@ -59,7 +59,7 @@
                                                     </p>
                                                     <p class="card-text">Price : IDR {{ $product['price'] }}</p>
 
-                                                    
+
                                                     <div class="d-flex">
                                                         <a href="/product/{{ $product->id }}"
                                                             style="background-color:#ffddc3; "

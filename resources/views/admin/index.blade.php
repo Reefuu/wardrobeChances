@@ -7,6 +7,7 @@
         <button class="btn btnk" onclick="filterSelection('categories')">Categories</button>
         <button class="btn btnk" onclick="filterSelection('subcat')">Subcategories</button>
         <button class="btn btnk" onclick="filterSelection('product')">Products</button>
+        <button class="btn btnk" onclick="filterSelection('testimonial')">Testimonials</button>
     </div>
     <div class="d-flex mx-auto align-items-center justify-content-center mt-4">
         <a href="{{ route('categories.create') }}" class="categories filterDiv btn btn-outline-dark">
@@ -17,6 +18,9 @@
         </a>
         <a href="{{ route('product.create') }}" class="product filterDiv btn btn-outline-dark ms-3">
             Create Product
+        </a>
+        <a href="{{ route('testimonial.create') }}" class="testimonial filterDiv btn btn-outline-dark ms-3">
+            Create Testimonial
         </a>
     </div>
 
@@ -239,6 +243,70 @@
                                         </tr>
                                     @endif
                                 @endforeach
+                            @endif
+                        @endforeach
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {{-- testimonial --}}
+
+    <div class="testimonial filterDiv">
+        <h3 class="mx-5 mt-5">All Testimonial</h3>
+        <div class="mx-5 mt-4 table-responsive">
+            <table class="table table-striped ">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Testimonial Desc</th>
+                        <th>Username</th>
+                        <th>Product Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($testimonials as $testimonial)
+                        @foreach ($products as $product)
+                            @if ($product->testimonial_id == $testimonial->id)
+                                <tr>
+                                    <th>{{ $loop->iteration }}</th>
+                                    <td>{{ $testimonial->testimonial_desc }}</td>
+                                    <td>{{ $users->first()->where('id', $testimonial->user_id)->get('username') }}</td>
+                                    <td>{{ $product->name }}</td>
+                                    <td>
+                                        @if ($testimonial->trashed())
+                                            Deleted
+                                        @else
+                                            Available
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="mt-2">
+                                            <a href="{{ route('testimonial.edit', $testimonial->id) }}"
+                                                class="btn btn-primary">Update</a>
+                                        </div>
+                                        <div class="mt-2">
+                                            <form action="{{ route('testimonial.destroy', $testimonial->id) }}"
+                                                method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                @if ($category->trashed())
+                                                    <button type="submit" class="btn btn-success">
+                                                        Restore </button>
+                                                @else
+                                                    <button type="submit" class="btn btn-danger">
+                                                        Delete
+                                                    </button>
+                                                @endif
+
+
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
                             @endif
                         @endforeach
                     @endforeach
