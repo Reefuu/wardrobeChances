@@ -31,6 +31,8 @@
     </div>
 
     <script src="{{ asset('javascript/filter.js') }}"></script>
+    @include('components.footer')
+
 </body>
 
 </html>

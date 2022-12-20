@@ -10,6 +10,7 @@ use App\Models\Comment;
 use App\Models\Product;
 use App\Models\Subcategory;
 use App\Models\Testimonial;
+use App\Models\User;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,9 @@ class ProductController extends Controller
                 "maintitle" => "Our Products",
                 "products" => Product::where('name', 'like', '%' . $request->search . '%')->get(),
                 "categories" => Category::all(),
-                "subcat" => Subcategory::all()
+                "subcat" => Subcategory::all(),
+                "testimonials" => Testimonial::all(),
+                "users" => User::all()
             ]);
         } else {
             return view('product', [
@@ -37,7 +40,10 @@ class ProductController extends Controller
                 "maintitle" => "Our Products",
                 "products" => Product::all(),
                 "categories" => Category::all(),
-                "subcat" => Subcategory::all()
+                "subcat" => Subcategory::all(),
+                "testimonials" => Testimonial::all(),
+                "users" => User::all()
+
 
             ]);
         }
