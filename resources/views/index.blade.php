@@ -12,9 +12,9 @@
         <div class="card-group">
             @foreach ($products as $product)
                 @if ($loop->iteration < 5)
-                    <div class="col-auto col-md-3 {{ $product->subcategory }}">
-                        <div class="ps-3">
-                            <div class="card my-4 shadow me-5 mb-5   rounded"
+                    <div class="col-auto d-flex col-md-3 {{ $product->subcategory }}">
+                        <div class="mx-auto">
+                            <div class="card my-4 shadow rounded"
                                 style="width: 17.5rem; height:25rem; background-color:#ffebdc ;">
                                 <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top mx-auto"
                                     style="width: 275px; height: 250px" alt="Product picture">
@@ -43,12 +43,12 @@
         <h3 class="text-center my-auto " style="font-family: 'Lexend'; font-weight: 600">WHAT PEOPLE SAYS</h3>
     </div>
 
-    <div class="card-group ">
-    @foreach ($testimonials as $testimoni)
-        @if ($loop->iteration < 5)
-                <div class="col-auto col-md-3">
-                    <div class="ps-3">
-                        <div class="card my-4 shadow me-5 mb-4  rounded" style="width: 17.5rem; ">
+    <div class="card-group row row-cols-md-4 g-1">
+        @foreach ($testimonials as $testimoni)
+            @if ($loop->iteration < 5)
+                <div class="col d-flex">
+                    <div class="mx-auto">
+                        <div class="card my-4 shadow rounded" style="width: 17.5rem; ">
                             <div class="card-header" style="background-color:#ffebdc ; ">
                                 Testimoni
                             </div>
@@ -67,10 +67,9 @@
                         </div>
                     </div>
                 </div>
-
-            </div>
-        @endif
-    @endforeach
+            @endif
+        @endforeach
+    </div>
 
 
 
