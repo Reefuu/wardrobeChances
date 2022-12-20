@@ -36,7 +36,17 @@ class CommentController extends Controller
      */
     public function store(StoreCommentRequest $request)
     {
-        //
+        $this->validate($request, [
+            'comments_desc' => 'required|string',
+        ]);
+
+        Comment::create([
+            'comments_desc' => $request->comments_desc,
+            'user_id' => $request->user_id,
+            'product_id' => $request->product_id,
+        ]);
+
+        return redirect('/product/' . $request->product_id);
     }
 
     /**
@@ -79,8 +89,12 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy($id)
     {
-        //
+        $comment = Comment::withTrashed()->findOrFail($id);
+
+        $comment->delete();
+
+        return redirect("/product/" . $comment->product->id);
     }
 }

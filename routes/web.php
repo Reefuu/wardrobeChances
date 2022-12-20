@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\WDController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Category;
@@ -53,9 +55,9 @@ Route::resource('subcategories', SubcategoryController::class)->middleware('memb
 
 Route::resource('product', ProductController::class)->middleware('member');
 
-Route::resource('testimonial', Testimonial::class)->middleware('member');
+Route::resource('testimonial', TestimonialController::class)->middleware('member');
 
-Route::resource('comments', Comment::class)->middleware('member');
+Route::resource('comments', CommentController::class)->middleware('member');
 
 Route::get('/admin', function () {
     return view('admin/index', [

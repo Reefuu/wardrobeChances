@@ -24,7 +24,7 @@ class WishlistController extends Controller
             "pagetitle" => "Whistlist",
             "wishlists" => Wishlist::all()->where('user_id', Auth::id()),
             "products" => Product::all(),
-            "carts" => Cart::withTrashed()->where('user_id', Auth::id())->get,
+            "carts" => Cart::withTrashed()->where('user_id', Auth::id())->get(),
             "categories" => Category::all(),
             "subcat" => Subcategory::all(),
 

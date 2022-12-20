@@ -14,7 +14,7 @@ class Comment extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        "comment_desc",
+        "comments_desc",
         "user_id",
         "product_id"
     ];

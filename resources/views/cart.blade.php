@@ -154,7 +154,7 @@
                                                                             </button>
                                                                     </form>
                                                 
-                                                        <a href="https://wa.me/6285173380018"
+                                                        <a href="https://wa.me/6285173380018?text=Hi%20I%20would%20like%20to%20buy%20the%20product%20%20called%20{{ str_replace(' ', '%20', $product->name) }}!"
                                                             class="d-flex btn align-items-center justify-content-center {{ $product->status == 'sold' ? 'disabled' : '' }}"
                                                             style="background-color:#ffbd9a; color: white "
                                                             target="_blank">

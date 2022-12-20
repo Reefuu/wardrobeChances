@@ -101,7 +101,7 @@ class ProductController extends Controller
         return view("detailproduct", [
             'product' => Product::findOrFail($id),
             'comments' => Comment::all()->where("product_id", $id),
-            'testimonials' => Testimonial::all()->where("product_id", $id),
+            'testimonial' => Testimonial::withTrashed()->where("id", Product::findOrFail($id)->testimonial_id)->first(),
             'wishlists' => Wishlist::withTrashed()->where('user_id', Auth::id())->get(),
             'carts' => Cart::withTrashed()->where('user_id', Auth::id())->get(),
             'maintitle' => "Product Detail",

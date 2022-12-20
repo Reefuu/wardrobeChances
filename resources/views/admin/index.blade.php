@@ -263,17 +263,19 @@
                         <th>Testimonial Desc</th>
                         <th>Username</th>
                         <th>Product Name</th>
+                        <th>Testimonial Delete Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($testimonials as $testimonial)
-                        @foreach ($products as $product)
+                    <?php $indexTesti = 1; ?>
+                    @foreach ($products as $product)
+                        @foreach ($testimonials as $testimonial)
                             @if ($product->testimonial_id == $testimonial->id)
                                 <tr>
-                                    <th>{{ $loop->iteration }}</th>
+                                    <th>{{ $indexTesti++ }}</th>
                                     <td>{{ $testimonial->testimonial_desc }}</td>
-                                    <td>{{ $users->first()->where('id', $testimonial->user_id)->get('username') }}</td>
+                                    <td>{{ $users->where('id', $testimonial->user_id)->first()->username }}</td>
                                     <td>{{ $product->name }}</td>
                                     <td>
                                         @if ($testimonial->trashed())
@@ -293,7 +295,7 @@
                                                 @csrf
                                                 @method('DELETE')
 
-                                                @if ($category->trashed())
+                                                @if ($testimonial->trashed())
                                                     <button type="submit" class="btn btn-success">
                                                         Restore </button>
                                                 @else
@@ -301,8 +303,6 @@
                                                         Delete
                                                     </button>
                                                 @endif
-
-
                                             </form>
                                         </div>
                                     </td>
