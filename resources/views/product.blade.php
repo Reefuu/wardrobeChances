@@ -48,18 +48,23 @@
                                     <div class="col col-auto col-md-3 mx-auto {{ $category->category_name }} filterDiv">
                                         <div class="ps-3">
                                             <div class="card mb-3 shadow me-5 mb-5 rounded"
-                                                style="width: 17.5rem; height:25rem; background-color:#ffebdc ;">
-                                                
+                                                style="width: 17.5rem; height:27rem; background-color:#ffebdc ;">
+
                                                 <img src="{{ asset('storage/' . $product->image) }}"
                                                     class="card-img-top mx-auto" style="width: 275px; height: 250px"
                                                     alt="Product picture">
-                                                
+
                                                 <div class="card-body">
                                                     <p class="card-title"
                                                         style="font-size: 19PX; text-overflow: ellipsis; overflow: hidden; white-space: nowrap ">
                                                         <b>{{ $product['name'] }}</b>
                                                     </p>
                                                     <p class="card-text">Price : IDR {{ $product['price'] }}</p>
+                                                    @if ($product->status == 'sold')
+                                                        <p class="text-danger">&nbsp; {{ $product->status }} </p>
+                                                    @elseif ($product->status == 'available')
+                                                        <p class="text-success">&nbsp; {{ $product->status }} </p>
+                                                    @endif
 
 
                                                     <div class="d-flex">

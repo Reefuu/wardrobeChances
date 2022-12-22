@@ -15,7 +15,7 @@
                     <div class="col-auto d-flex col-md-3 {{ $product->subcategory }}">
                         <div class="mx-auto">
                             <div class="card my-4 shadow rounded"
-                                style="width: 17.5rem; height:25rem; background-color:#ffebdc ;">
+                                style="width: 17.5rem; height:27rem; background-color:#ffebdc ;">
                                 <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top mx-auto"
                                     style="width: 275px; height: 250px" alt="Product picture">
 
@@ -25,6 +25,11 @@
                                         <b>{{ $product['name'] }}</b>
                                     </p>
                                     <p class="card-text">Price : {{ $product['price'] }}</p>
+                                    @if ($product->status == 'sold')
+                                        <p class="text-danger">&nbsp; {{ $product->status }} </p>
+                                    @elseif ($product->status == 'available')
+                                        <p class="text-success">&nbsp; {{ $product->status }} </p>
+                                    @endif
                                     <div class="d-flex">
                                         <a href="/product/{{ $product->id }}" style="background-color:#ffddc3; "
                                             class="btn align-items-center justify-content-center mx-auto"><b>Shop</b></a>
@@ -57,7 +62,7 @@
                                     <p>{{ $testimoni->testimonial_desc }}</p>
                                     @foreach ($users as $user)
                                         @if ($testimoni->user_id == $user->id)
-                                            <footer class="blockquote-footer">{{ $user['name'] }}
+                                            <footer class="blockquote-footer">{{ $user['username'] }}
                                             </footer>
                                         @endif
                                     @endforeach

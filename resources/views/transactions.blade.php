@@ -40,7 +40,7 @@
 
     <div class="mt-3">
         <div class=" text-left w-100" style="background-color: #ffffff">
-            <div class="card-group row row-cols-2 mx-auto">
+            <div class="card-group row row-cols-1 mx-auto">
                 @foreach ($categories as $category)
                     @foreach ($subcat as $subc)
                         @if ($subc->category_id == $category->id)
@@ -51,16 +51,14 @@
                                             @foreach ($transactions as $transaction)
                                                 @if ($transaction->id == $transacprod->transaction_id)
                                                     @if ($transaction->user_id == Auth::id() || auth()->user()->status == 'admin')
-                                                        )
-
                                                         <div
-                                                            class="col col-12 col-md-6 mb-3  mx-auto {{ $category->category_name }} filterDiv">
+                                                            class="col mb-3 mx-auto {{ $category->category_name }} filterDiv">
                                                             <div class="d-flex rounded shadow"
                                                                 style="background-color:#ffebdc ;">
                                                                 <div class="col-md-4 p-2">
                                                                     <img src="{{ asset('storage/' . $product->image) }}"
                                                                         class="card-img mx-auto"
-                                                                        style="width: 230px; height: 300px;"
+                                                                        style="width: 400px; height: 300px;"
                                                                         alt="Product picture">
                                                                 </div>
                                                                 <div class="col-md-8 ms-3 align-items-stretch">

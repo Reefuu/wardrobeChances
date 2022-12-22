@@ -16,8 +16,8 @@ class WDController extends Controller
     public function index(Request $request)
     {
         return view('index', [
-            "pagetitle" => "Wardrobe Chance",
-            "maintitle" => "Wardrobe Chance",
+            "pagetitle" => "Wardrobe Chances",
+            "maintitle" => "Wardrobe Chances",
             "products" => Product::all()->sortBy('id', SORT_REGULAR, true),
             "categories" => Category::all(),
             "subcat" => Subcategory::all(),
