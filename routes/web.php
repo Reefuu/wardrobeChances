@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\WDController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Category;
@@ -14,6 +15,7 @@ use App\Models\Comment;
 use App\Models\Product;
 use App\Models\Subcategory;
 use App\Models\Testimonial;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +51,8 @@ Route::resource('cart', CartController::class)->middleware('member');
 Route::resource('categories', CategoryController::class)->middleware('member');
 
 Route::resource('subcategories', SubcategoryController::class)->middleware('member');
+
+Route::resource('transactions', TransactionController::class)->middleware('member');
 
 // Route::resource('product', Product::class)->middleware('admin');
 

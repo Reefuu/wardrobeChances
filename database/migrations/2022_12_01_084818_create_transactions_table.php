@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('total_price');
-            $table->text('shipping_address');
             $table->enum('status', ['waiting', 'paid', 'shipped', 'delivered', 'canceled'])->default('waiting');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

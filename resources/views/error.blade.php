@@ -2,7 +2,7 @@
 
 @section('container')
     
-    <div class="text-center">
+    <div class="text-center my-5 mt-5">
         <img src="{{ asset('pictures/nopermission.svg') }}" class="card-img-top " style="width: 300px; height: 300px"
             alt="No Permission">
     </div>

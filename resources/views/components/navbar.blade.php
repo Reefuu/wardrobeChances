@@ -16,6 +16,9 @@
                 <li class="nav-item">
                     <a class="nav-link {{ $pagetitle == 'Products' ? 'active' : '' }}" href="/product">Products</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $pagetitle == 'Transactions' ? 'active' : '' }}" href="/transactions">Transactions</a>
+                </li>
                 <li class="nav-item ">
                     @auth
                         @if (auth()->user()->status == 'admin')

@@ -152,12 +152,25 @@
                                                                     </button>
                                                                 </form>
                                                             @endif
-                                                            <a href="https://wa.me/6285173380018?text=Hi%20I%20would%20like%20to%20buy%20the%20product%20%20called%20{{ str_replace(' ', '%20', $product->name) }}!"
-                                                                class="d-flex btn align-items-center justify-content-center {{ $product->status == 'sold' ? 'disabled' : '' }}"
-                                                                style="background-color:#ffbd9a; color: white "
-                                                                target="_blank">
-                                                                <b>Buy</b>
-                                                            </a>
+                                                            <form action="{{ route('transactions.store') }}"
+                                                                method="POST"
+                                                                class="{{ $product->status == 'sold' ? 'disabled' : '' }}"
+                                                                enctype="multipart/form-data">
+                                                                @csrf
+                                                                <input type="hidden" name="total_price"
+                                                                    value="{{ $product->price }}">
+                                                                <input type="hidden" name="status" value="waiting">
+                                                                <input type="hidden" name="product_id"
+                                                                    value="{{ $product->id }}">
+                                                                <input type="hidden" name="user_id"
+                                                                    value="{{ Auth::id() }}">
+                                                                <button
+                                                                    class="d-flex btn align-items-center justify-content-center {{ $product->status == 'sold' ? 'disabled' : '' }}"
+                                                                    type="submit"
+                                                                    style="background-color:#ffbd9a; color: white ">
+                                                                    <b>Buy</b>
+                                                                </button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -43,8 +43,6 @@ class ProductController extends Controller
                 "subcat" => Subcategory::all(),
                 "testimonials" => Testimonial::all(),
                 "users" => User::all()
-
-
             ]);
         }
     }
